@@ -52,3 +52,26 @@ void print_dir(char *path)
 		path++;
 	}
 }
+
+/**
+  * print_env - prints the environment variables
+  *
+  * @env: pointer to array of environment variables
+  * Return: void
+  */
+void print_env(char **env)
+{
+	int i = 0, k = 0;
+
+	if (!env)
+		return;
+
+	while (env[i])
+	{
+		for (k = 0; env[i][k];)
+			k++;
+		write(STDOUT_FILENO, env[i], k);
+		print_str("\n");
+		i++;
+	}
+}
