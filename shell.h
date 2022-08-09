@@ -28,3 +28,29 @@ typedef struct built_in
 	char (*built_cmd)(char **, char **);
 } do_built;
 
+/*buit in headers */
+char exit_builtin(char **, char **);
+char env_builtin(char **, char **);
+
+/*headers for prompt*/
+/* prompt */
+int print_str(char *);
+int builtin_finder(char **);
+
+/*free header*/
+void free_double(char **);
+
+/* headers for the path*/
+char **build_path(char *);
+void print_dir(char *);
+void print_env(char **);
+char *_getenv(char *);
+char *cut_env(char *);
+
+/* headers for prompt*/
+int print_str(char *);
+int builtin_finder(char **);
+#endif /*_SHELL_H_*/
+
+
+
