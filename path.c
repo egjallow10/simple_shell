@@ -105,3 +105,17 @@ char *_getenv(char *name)
 	}
 	return (NULL);
 }
+
+/**
+  * cut_env - cuts the environment variable to be only after the =
+  *
+  * @env: string of environment variable
+  * Return: the cut string
+  */
+char *cut_env(char *env)
+{
+	while (*env != '=')
+		env++;
+	return (++env);
+}
+
