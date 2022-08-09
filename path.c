@@ -31,3 +31,24 @@ char **build_path(char *path)
 	pathlist[i][1] = '\0';
 	return (pathlist);
 }
+
+/**
+  * print_dir - prints the directory of the path found,
+  *
+  * @path: colon separated string of all paths
+  * Return: void
+  */
+void print_dir(char *path)
+{
+	if (!path)
+		return;
+
+	while (*path)
+	{
+		if (*path != ':')
+			write(STDOUT_FILENO, path, 1);
+		else
+			write(STDOUT_FILENO, "\n", 1);
+		path++;
+	}
+}
