@@ -51,8 +51,7 @@ char *_malloc(int n, char **a)
 
 
 /**
-  * word_counter - counts the words in a string 
-  *
+  * word_counter - count a words
   * @str: string to obtain word count from
   * @delim: char to split str with
   * Return: returns the number of wor
