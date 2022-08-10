@@ -34,3 +34,18 @@ char **arg_list(int isinteractive)
 	return (arglist);
 }
 
+
+/**
+  * error_call - function for freeing and returning an error
+  *
+  * @n: integer in case of specific exit number
+  * @err: string to print out for error
+  * @arglist: the arguments to free in case of exits
+  * Return: n on success
+  */
+int error_call(int n, char *err, char **arglist)
+{
+	perror(err);
+	free_double(arglist);
+	return (n);
+}
