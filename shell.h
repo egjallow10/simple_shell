@@ -50,6 +50,13 @@ char *cut_env(char *);
 /* headers for prompt*/
 int print_str(char *);
 int builtin_finder(char **);
+
+/* headers for stringfy*/
+
+int _strlen(char *);
+int _strcmp(char *, char *);
+char *_strcat_dir(char *, char *);
+int _atoi(char *);
 #endif /*_SHELL_H_*/
 
 
