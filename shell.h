@@ -57,6 +57,9 @@ int _strlen(char *);
 int _strcmp(char *, char *);
 char *_strcat_dir(char *, char *);
 int _atoi(char *);
+
+
+char *check_path(char *str);
 #endif /*_SHELL_H_*/
 
 
