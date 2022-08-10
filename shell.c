@@ -49,3 +49,55 @@ int error_call(int n, char *err, char **arglist)
 	free_double(arglist);
 	return (n);
 }
+
+
+/**
+  * main - runs the shell
+  *
+  * @argc: number of arguments
+  * @argv: array of arguments (strings)
+  * Return: 0
+  */
+int main(int argc, char *const argv[])
+{
+	char **arglist = NULL;
+	char *full_cmd = NULL;
+	pid_t my_pid;
+	int status = 0, isinteractive = 0;
+	char ret_code = -1;
+	(void)argv;
+
+	isinteractive = isatty(STDIN_FILENO);
+	while (argc)
+	{
+		arglist = arg_list(isinteractive);
+		ret_code = builtin_finder(arglist);
+
+		if (ret_code >= 0)
+			exit(ret_code);
+		my_pid = fork();
+		if (my_pid == -1)
+		{
+			error_call(0, "fork failed", arglist);
+			return (1);
+		}
+		if (my_pid == 0 && ret_code == -1 && arglist)
+		{
+			if (*arglist[NON_BUILTIN] != '/')
+			{
+				full_cmd = check_path(arglist[NON_BUILTIN]);
+				if (full_cmd && execve(full_cmd, arglist, NULL) == -1)
+					error_call(0, full_cmd, arglist);
+			}
+			else if (execve(arglist[NON_BUILTIN], arglist, NULL) == -1)
+			{
+				error_call(0, "not found", arglist);
+			}
+		}
+		if (wait(&status) == -1) /* if child failed */
+			_exit(status);
+		if (arglist && ret_code == -1)
+			free_double(arglist);
+	}
+	return (0);
+}
