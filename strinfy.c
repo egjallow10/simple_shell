@@ -48,3 +48,36 @@ char *_malloc(int n, char **a)
 	}
 	return (ret);
 }
+
+
+/**
+  * word_counter - counts the words in a string 
+  *
+  * @str: string to obtain word count from
+  * @delim: char to split str with
+  * Return: returns the number of wor
+  */
+int word_counter(char *str, char delim)
+{
+	int i, count = 0;
+
+	if (!str || *str == '\0')
+		return (0);
+	for (i = 0; *(str + i) && delim != ':'; i++)
+	{
+		if (*(str + i) != delim)
+			count++;
+		while (*(str + i) != delim && *(str + i))
+			i++;
+		if (!*(str + i))
+			break;
+	}
+	if (delim != ':')
+		return (count);
+	for (i = 0, count = 1; *(str + i) && delim == ':'; i++)
+	{
+		if (*(str + i) == delim)
+			count++;
+	}
+	return (count);
+}
